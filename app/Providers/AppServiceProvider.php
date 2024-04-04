@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Services\Database\ConnectionService;
+use App\Services\Log\DatabaseLogger;
+use App\Services\Log\Logger;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(ConnectionService::class, function ($app) {
+            return ConnectionService::getInstance();
+        });
     }
 
     /**
@@ -19,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->app->bind(Logger::class, DatabaseLogger::class);
     }
 }
