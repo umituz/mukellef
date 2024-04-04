@@ -5,4 +5,5 @@ return [
     App\Providers\HorizonServiceProvider::class,
     App\Providers\RepositoryServiceProvider::class,
     App\Providers\ResponseServiceProvider::class,
+    App\Providers\RabbitMQServiceProvider::class,
 ];
