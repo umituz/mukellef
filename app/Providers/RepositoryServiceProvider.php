@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\SubscriptionRepository;
+use App\Repositories\SubscriptionRepositoryInterface;
 use App\Repositories\UserRepository;
 use App\Repositories\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
@@ -25,5 +27,6 @@ class RepositoryServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->singleton(SubscriptionRepositoryInterface::class, SubscriptionRepository::class);
     }
 }
