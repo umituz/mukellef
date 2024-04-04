@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Mail\PaymentReceivedMail;
 use App\Models\Subscription;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -9,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class RenewSubscriptionJob implements ShouldQueue
 {
@@ -31,5 +33,9 @@ class RenewSubscriptionJob implements ShouldQueue
     {
         $newRenewalDate = Carbon::parse($this->subscription->renewal_at)->addMonth();
         $this->subscription->update(['renewal_at' => $newRenewalDate]);
+
+       // @todo
+        $to = 'admin@example.com';
+        Mail::to($to)->send(new PaymentReceivedMail());
     }
 }
