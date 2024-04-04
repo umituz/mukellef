@@ -16,4 +16,9 @@ interface SubscriptionRepositoryInterface
      * @return mixed
      */
     public function createUserSubscription($data);
+
+    /**
+     * @return mixed
+     */
+    public function getRenewableItems();
 }

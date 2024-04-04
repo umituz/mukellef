@@ -34,4 +34,12 @@ class SubscriptionRepository extends BaseRepository implements SubscriptionRepos
     {
         return Auth::user()->subscriptions()->create($data);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getRenewableItems()
+    {
+        return $this->subscription->where('renewal_at', '<=', now())->get();
+    }
 }
