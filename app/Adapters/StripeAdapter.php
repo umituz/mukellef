@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Payment;
+namespace App\Adapters;
 
 class StripeAdapter implements PaymentGateway
 {

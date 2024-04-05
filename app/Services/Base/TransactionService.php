@@ -6,7 +6,6 @@ use App\Events\PaymentReceivedEvent;
 use App\Http\Resources\TransactionResource;
 use App\Repositories\TransactionRepositoryInterface;
 use App\Services\Mail\MailService;
-use App\Services\Payment\PaymentService;
 use Illuminate\Support\Facades\Auth;
 
 class TransactionService

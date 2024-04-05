@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Http\Response;
 use Illuminate\Routing\ResponseFactory;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,7 +26,7 @@ class ResponseServiceProvider extends ServiceProvider
     public function boot(ResponseFactory $factory)
     {
         $factory->macro('success', function ($data = null, $message = '', $statusCode = null) use ($factory) {
-            $statusCode = $statusCode ?? 200;
+            $statusCode = $statusCode ?? Response::HTTP_OK;
 
             $response = [
                 'statusCode' => $statusCode,
@@ -37,7 +38,7 @@ class ResponseServiceProvider extends ServiceProvider
         });
 
         $factory->macro('error', function (array $errors = [], $message = '', $statusCode = null) use ($factory) {
-            $statusCode = $statusCode ?? 500;
+            $statusCode = $statusCode ?? Response::HTTP_INTERNAL_SERVER_ERROR;
 
             $response = [
                 'statusCode' => $statusCode,

@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Services\Payment;
+namespace App\Services\Base;
 
+use App\Adapters\IyzicoAdapter;
+use App\Adapters\PaymentGateway;
+use App\Adapters\StripeAdapter;
 use App\Models\User;
 
 class PaymentService
