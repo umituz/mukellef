@@ -25,11 +25,15 @@ class LoginController extends BaseController
      */
     public function login(LoginRequest $request)
     {
+        if (! auth()->attempt($request->only('email', 'password'))) {
+            return $this->validationWarning([
+                'email' => __('The provided credentials are incorrect!'),
+            ], __('Form Validation Failed'));
+        }
+
         $data = $this->loginService->login($request);
 
-        return array_key_exists('token', $data) ?
-            $this->ok($data, __('User Logged In')) :
-            $this->error($data['errors'], $data['message'], $data['statusCode']);
+        return $this->ok($data, __('User Logged In'));
     }
 
     /**
@@ -37,8 +41,8 @@ class LoginController extends BaseController
      */
     public function logout(Request $request)
     {
-        $result = $this->loginService->logout($request);
+        $this->loginService->logout($request);
 
-        return $this->ok($result, __('Logout successful'));
+        return $this->ok([], __('Logout successful'));
     }
 }

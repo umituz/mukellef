@@ -6,7 +6,7 @@ use App\Http\Controllers\Api\Payment\TransactionsController;
 use App\Http\Controllers\Api\Subscription\SubscriptionsController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
+Route::group(['prefix' => 'auth'], function () {
     Route::post('/register', [RegisterController::class, 'register'])->name('register');
     Route::post('/login', [LoginController::class, 'login'])->name('login');
 });
