@@ -6,20 +6,24 @@ use App\Events\PaymentReceivedEvent;
 use App\Http\Resources\TransactionResource;
 use App\Repositories\TransactionRepositoryInterface;
 use App\Services\Mail\MailService;
+use App\Services\Payment\PaymentService;
 use Illuminate\Support\Facades\Auth;
 
 class TransactionService
 {
     private TransactionRepositoryInterface $transactionRepository;
     private MailService $mailService;
+    private PaymentService $paymentService;
 
     public function __construct(
         TransactionRepositoryInterface $transactionRepository,
-        MailService $mailService
+        MailService $mailService,
+        PaymentService $paymentService
     )
     {
         $this->transactionRepository = $transactionRepository;
         $this->mailService = $mailService;
+        $this->paymentService = $paymentService;
     }
 
     public function getTransactionList()
@@ -31,14 +35,27 @@ class TransactionService
 
     public function createTransaction($validatedData)
     {
-        $item = $this->transactionRepository->createUserTransaction([
-            'subscription_id' => $validatedData['subscription_id'],
-            'price' => $validatedData['price'],
-        ]);
-
-        $this->sendPaymentReceivedMail();
+        $item = $this->payByProvider(Auth::user(), $validatedData);
 
         return new TransactionResource($item);
+    }
+
+    private function payByProvider($user, $data)
+    {
+        $paymentSuccess = $this->paymentService->pay($user, $data['price']);
+
+        if ($paymentSuccess) {
+            $item = $this->transactionRepository->createUserTransaction([
+                'subscription_id' => $data['subscription_id'],
+                'price' => $data['price'],
+            ]);
+
+            $this->sendPaymentReceivedMail();
+
+            return $item;
+        } else {
+            return false;
+        }
     }
 
     private function sendPaymentReceivedMail()
