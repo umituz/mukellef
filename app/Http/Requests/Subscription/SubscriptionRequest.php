@@ -23,6 +23,7 @@ class SubscriptionRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name' => 'required|string',
             'renewal_at' => 'required|date',
         ];
     }
@@ -33,6 +34,8 @@ class SubscriptionRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'name.required' => __('The :attribute field is required.'),
+            'name.string' => __('The :attribute must be a string.'),
             'renewal_at.required' => __('The :attribute field is required.'),
             'renewal_at.date' => __('The :attribute must be a valid date.'),
         ];
@@ -44,6 +47,7 @@ class SubscriptionRequest extends FormRequest
     public function attributes(): array
     {
         return [
+            'name' => __('Name'),
             'renewal_at' => __('Renewal Date'),
         ];
     }

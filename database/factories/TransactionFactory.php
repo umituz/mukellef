@@ -3,13 +3,14 @@
 namespace Database\Factories;
 
 use App\Models\Subscription;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Subscription>
+ * @extends Factory<Transaction>
  */
-class SubscriptionFactory extends Factory
+class TransactionFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,9 +20,9 @@ class SubscriptionFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => 1 ?? User::factory(),
-            'name' => $this->faker->words(3,3),
-            'renewal_at' => $this->faker->dateTimeBetween('now', '+1 month'),
+            'user_id' => User::factory(),
+            'subscription_id' => Subscription::factory(),
+            'price' => $this->faker->randomFloat(2, 10, 1000),
         ];
     }
 }

@@ -2,23 +2,22 @@
 
 namespace App\Models;
 
-use App\Models\Scopes\SortingScope;
-use App\Observers\SubscriptionObserver;
+use App\Observers\TransactionObserver;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Subscription extends BaseModel
+class Transaction extends BaseModel
 {
     protected $fillable = [
         'user_id',
-        'name',
-        'renewal_at',
+        'subscription_id',
+        'price',
     ];
 
     protected static function boot()
     {
         parent::boot();
 
-        static::observe(SubscriptionObserver::class);
+        static::observe(TransactionObserver::class);
     }
 
     /**
@@ -32,8 +31,8 @@ class Subscription extends BaseModel
     /**
      * @return BelongsTo
      */
-    public function transaction(): BelongsTo
+    public function subscription(): BelongsTo
     {
-        return $this->belongsTo(Transaction::class);
+        return $this->belongsTo(Subscription::class);
     }
 }

@@ -14,12 +14,14 @@ class PaymentReceivedMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
+    private $data;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -39,6 +41,9 @@ class PaymentReceivedMail extends Mailable implements ShouldQueue
     {
         return new Content(
             view: 'emails.payment-received',
+            with: [
+                'user' => $this->data
+            ]
         );
     }
 

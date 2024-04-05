@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Jobs\RenewSubscriptionJob;
 use App\Models\Subscription;
+use App\Services\Mail\MailService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 

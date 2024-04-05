@@ -33,7 +33,7 @@ class SubscriptionsController extends BaseController
     public function store(SubscriptionRequest $request)
     {
         $item = $this->subscriptionService->createSubscription([
-            'user_id' => Auth::id(),
+            'name' => $request->name,
             'renewal_at' => $request->renewal_at,
         ]);
 
@@ -46,6 +46,7 @@ class SubscriptionsController extends BaseController
     public function update(SubscriptionRequest $request, Subscription $subscription)
     {
         $subscription->update([
+            'name' => $request->name,
             'renewal_at' => $request->renewal_at,
         ]);
 
