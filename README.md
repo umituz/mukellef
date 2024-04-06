@@ -59,7 +59,7 @@ Laravel 11 ile kodlanmıştır ve PHP sürümü 8.3
 7. Tarayıcınızda `http://localhost:8000` adresine gidin, Laravel hoş geldiniz sayfasını görmelisiniz.
 8. RabbitMQ admin paneline giriş bilgileri: kullanıcı adı - admin, şifre - password
 9. Phpmyadmin veritabanı arayüzüne giriş bilgileri: host - mysql, kullanıcı adı - root, şifre - password
-
+10. Postman collection import ettikten sonra yeni bir environment oluşturmanız gerekebilir.(Mukellef_Local_ENV) Bunun nedeni login işlemi sonrası bearer token işlemleri için gerekli olan TOKEN değerini global olarak eklemek gerekiyor. Her bir istek bu değeri kontrol ettiği için konulması gerekmektedir.
 ## Geliştirici
 
 - [Ümit UZ](https://github.com/umituz)
@@ -68,4 +68,4 @@ Laravel 11 ile kodlanmıştır ve PHP sürümü 8.3
 
 Aşağıdaki linkten api dökümantasyonuna ulaşabilirsiniz.
 
-https://documenter.getpostman.com/view/32043497/2sA35MxJBu
+https://documenter.getpostman.com/view/32043497/2sA35MxJR5
