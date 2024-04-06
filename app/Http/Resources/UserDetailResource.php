@@ -23,8 +23,8 @@ class UserDetailResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'subscriptions' => SubscriptionResource::collection($this->subscriptions ?? []),
-            'transactions' => TransactionResource::collection($this->transactions ?? []),
+            'subscriptions' => SubscriptionResource::collection($this->subscriptions ?? [])->toArray(new Request()),
+            'transactions' => TransactionResource::collection($this->transactions ?? [])->toArray(new Request()),
         ];
     }
 }
