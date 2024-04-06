@@ -36,6 +36,10 @@ class TransactionService
     {
         $item = $this->payByProvider(Auth::user(), $validatedData);
 
+        if ($item === false) {
+            return null;
+        }
+
         return new TransactionResource($item);
     }
 

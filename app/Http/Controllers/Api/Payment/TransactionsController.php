@@ -38,6 +38,10 @@ class TransactionsController extends BaseController
     {
         $item = $this->transactionService->createTransaction($request->validated());
 
-        return $this->created($item, __('Transaction created successfully'));
+        if ($item) {
+            return $this->created($item, __('Transaction created successfully'));
+        }
+
+        return $this->validationWarning([], __('We could not charge payment. Please, try again later!'));
     }
 }

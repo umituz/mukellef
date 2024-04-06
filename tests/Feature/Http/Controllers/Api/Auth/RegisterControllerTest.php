@@ -13,7 +13,7 @@ class RegisterControllerTest extends IntegrationBaseTestCase
 {
     use WithFaker;
 
-    public function test_register()
+    public function test_should_register_successfully()
     {
         $password = bcrypt(123456789);
         $userData = [
@@ -32,7 +32,7 @@ class RegisterControllerTest extends IntegrationBaseTestCase
         ]);
     }
 
-    public function test_register_with_invalid_email()
+    public function test_should_not_register_with_invalid_email()
     {
         $password = bcrypt('password123');
         $userData = [
@@ -53,7 +53,7 @@ class RegisterControllerTest extends IntegrationBaseTestCase
             ]);
     }
 
-    public function test_register_with_duplicate_email()
+    public function test_shot_not_register_with_duplicate_email()
     {
         $existingUser = User::factory()->create();
 
@@ -76,7 +76,7 @@ class RegisterControllerTest extends IntegrationBaseTestCase
             ]);
     }
 
-    public function test_register_with_mismatched_passwords()
+    public function test_should_not_register_with_mismatched_passwords()
     {
         $password = bcrypt('password123');
         $userData = [

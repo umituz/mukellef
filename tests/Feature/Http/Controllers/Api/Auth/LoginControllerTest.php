@@ -11,16 +11,10 @@ use Tests\Feature\IntegrationBaseTestCase;
  */
 class LoginControllerTest extends IntegrationBaseTestCase
 {
-    public function test_login()
+    public function test_should_login_successfully()
     {
-        $user = User::factory()->create([
-            'password' => bcrypt(123456789),
-        ]);
-
-        $userData = [
-            'email' => $user->email,
-            'password' => '123456789',
-        ];
+        $user = User::factory()->create(['password' => bcrypt(123456789),]);
+        $userData = ['email' => $user->email, 'password' => '123456789',];
 
         $response = $this->json('POST', '/api/auth/login', $userData);
 
@@ -32,7 +26,7 @@ class LoginControllerTest extends IntegrationBaseTestCase
             ]);
     }
 
-    public function test_login_with_invalid_password()
+    public function test_should_not_login_with_invalid_password()
     {
         $userData = [
             'email' => 'user@example.com',
@@ -49,7 +43,7 @@ class LoginControllerTest extends IntegrationBaseTestCase
             ]);
     }
 
-    public function test_login_with_invalid_email()
+    public function test_should_not_login_with_invalid_email()
     {
         $userData = [
             'email' => 'invalid_email@example.com',
@@ -66,7 +60,7 @@ class LoginControllerTest extends IntegrationBaseTestCase
             ]);
     }
 
-    public function test_login_with_nonexistent_user()
+    public function test_should_not_login_with_non_existent_user()
     {
         $userData = [
             'email' => 'nonexistent@example.com',
@@ -83,7 +77,7 @@ class LoginControllerTest extends IntegrationBaseTestCase
             ]);
     }
 
-    public function test_user_can_logout()
+    public function test_should_logout_successfully()
     {
         $user = User::factory()->create();
         Sanctum::actingAs($user);
@@ -98,22 +92,4 @@ class LoginControllerTest extends IntegrationBaseTestCase
                 'data' => [],
             ]);
     }
-
-    public function test_login_with_invalid_credentials()
-    {
-        $userData = [
-            'email' => 'invalid@example.com',
-            'password' => 'invalid_password',
-        ];
-
-        $response = $this->json('POST', '/api/auth/login', $userData);
-
-        $response->assertStatus(422)
-            ->assertJson([
-                'statusCode' => 422,
-                'errors' => ['email' => [__('The selected email is invalid.')]],
-                'message' => __('Form Validation Failed'),
-            ]);
-    }
-
 }
