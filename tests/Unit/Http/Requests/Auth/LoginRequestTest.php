@@ -4,9 +4,9 @@ namespace Tests\Unit\Http\Requests\Auth;
 
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Lang;
-use Tests\TestCase;
+use Tests\BaseTestCase;
 
-class LoginRequestTest extends TestCase
+class LoginRequestTest extends BaseTestCase
 {
     /**
      * Test validation rules.

@@ -4,12 +4,12 @@ namespace Tests\Feature\Http\Controllers\Api\Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\WithFaker;
-use Tests\Feature\IntegrationBaseTestCase;
+use Tests\BaseTestCase;
 
 /**
  * Class RegisterControllerTest
  */
-class RegisterControllerTest extends IntegrationBaseTestCase
+class RegisterControllerTest extends BaseTestCase
 {
     use WithFaker;
 

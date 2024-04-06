@@ -4,9 +4,9 @@ namespace Tests\Unit\Http\Requests\Subscription;
 
 use App\Http\Requests\Subscription\SubscriptionRequest;
 use Illuminate\Support\Facades\Validator;
-use Tests\TestCase;
+use Tests\BaseTestCase;
 
-class SubscriptionRequestTest extends TestCase
+class SubscriptionRequestTest extends BaseTestCase
 {
     public function test_authorize_method()
     {

@@ -12,9 +12,9 @@ use App\Services\Base\TransactionService;
 use App\Services\Mail\MailService;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Tests\Feature\IntegrationBaseTestCase;
+use Tests\BaseTestCase;
 
-class TransactionsControllerTest extends IntegrationBaseTestCase
+class TransactionsControllerTest extends BaseTestCase
 {
     public function test_should_return_all_user_transactions()
     {

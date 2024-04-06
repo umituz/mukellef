@@ -3,21 +3,14 @@
 namespace Tests\Unit\Http\Requests\Payment;
 
 use App\Http\Requests\Payment\TransactionRequest;
-use App\Models\User;
 use Illuminate\Support\Facades\Lang;
-use Tests\TestCase;
+use Tests\BaseTestCase;
 
-class TransactionRequestTest extends TestCase
+class TransactionRequestTest extends BaseTestCase
 {
     public function test_authorize_method()
     {
-        $user = User::factory()->create();
-
         $request = new TransactionRequest();
-
-        $request->setUserResolver(function () use ($user) {
-            return $user;
-        });
 
         $this->assertTrue($request->authorize());
     }

@@ -4,12 +4,12 @@ namespace Tests\Feature\Http\Controllers\Api\Auth;
 
 use App\Models\User;
 use Laravel\Sanctum\Sanctum;
-use Tests\Feature\IntegrationBaseTestCase;
+use Tests\BaseTestCase;
 
 /**
  * Class LoginControllerTest
  */
-class LoginControllerTest extends IntegrationBaseTestCase
+class LoginControllerTest extends BaseTestCase
 {
     public function test_should_login_successfully()
     {

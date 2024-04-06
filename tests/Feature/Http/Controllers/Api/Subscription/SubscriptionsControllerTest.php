@@ -5,9 +5,9 @@ namespace Tests\Feature\Http\Controllers\Api\Subscription;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Response;
-use Tests\Feature\IntegrationBaseTestCase;
+use Tests\BaseTestCase;
 
-class SubscriptionsControllerTest extends IntegrationBaseTestCase
+class SubscriptionsControllerTest extends BaseTestCase
 {
     public function test_should_return_all_user_subscription_list()
     {
