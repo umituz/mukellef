@@ -6,13 +6,15 @@ use App\Events\PaymentReceivedEvent;
 use App\Http\Resources\TransactionResource;
 use App\Repositories\TransactionRepositoryInterface;
 use App\Services\Mail\MailService;
-use Illuminate\Support\Facades\Auth;
 
 class TransactionService
 {
     private TransactionRepositoryInterface $transactionRepository;
+
     private MailService $mailService;
+
     private PaymentService $paymentService;
+
     private UserService $userService;
 
     public function __construct(
@@ -20,8 +22,7 @@ class TransactionService
         MailService $mailService,
         PaymentService $paymentService,
         UserService $userService,
-    )
-    {
+    ) {
         $this->transactionRepository = $transactionRepository;
         $this->mailService = $mailService;
         $this->paymentService = $paymentService;

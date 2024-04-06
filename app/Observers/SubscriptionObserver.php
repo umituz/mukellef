@@ -11,7 +11,7 @@ class SubscriptionObserver extends BaseObserver
      */
     public function created(Subscription $subscription): void
     {
-        $this->logger->log('New subscription created: ' . $subscription->name);
+        $this->logger->log('New subscription created: '.$subscription->name);
     }
 
     /**
@@ -19,7 +19,7 @@ class SubscriptionObserver extends BaseObserver
      */
     public function updated(Subscription $subscription): void
     {
-        $this->logger->log('Current user updated: ' . $subscription->name);
+        $this->logger->log('Current user updated: '.$subscription->name);
     }
 
     /**
@@ -27,7 +27,7 @@ class SubscriptionObserver extends BaseObserver
      */
     public function deleted(Subscription $subscription): void
     {
-        $this->logger->log('The subscription soft deleted: ' . $subscription->name);
+        $this->logger->log('The subscription soft deleted: '.$subscription->name);
     }
 
     /**
@@ -35,7 +35,7 @@ class SubscriptionObserver extends BaseObserver
      */
     public function restored(Subscription $subscription): void
     {
-        $this->logger->log('The subscription restored: ' . $subscription->name);
+        $this->logger->log('The subscription restored: '.$subscription->name);
     }
 
     /**
@@ -43,6 +43,6 @@ class SubscriptionObserver extends BaseObserver
      */
     public function forceDeleted(Subscription $subscription): void
     {
-        $this->logger->log('The subscription force deleted: ' . $subscription->name);
+        $this->logger->log('The subscription force deleted: '.$subscription->name);
     }
 }

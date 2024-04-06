@@ -9,7 +9,6 @@ use Tests\BaseTestCase;
 
 class TransactionTest extends BaseTestCase
 {
-
     public function test_user_relation()
     {
         $user = User::factory()->create();

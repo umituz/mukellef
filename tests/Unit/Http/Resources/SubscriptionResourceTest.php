@@ -3,15 +3,15 @@
 namespace Tests\Unit\Http\Resources;
 
 use App\Http\Resources\SubscriptionResource;
-use App\Models\User;
 use App\Models\Subscription;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
 use Tests\BaseTestCase;
 
 class SubscriptionResourceTest extends BaseTestCase
 {
-   use RefreshDatabase;
+    use RefreshDatabase;
 
     /**
      * Test resource transformation.
@@ -26,7 +26,6 @@ class SubscriptionResourceTest extends BaseTestCase
             'user_id' => $user->id,
             'renewal_at' => now(),
         ]);
-
 
         $resource = new SubscriptionResource($subscription);
 

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('subscription_id')->constrained('subscriptions')->onDelete('cascade')->onUpdate('cascade');
-            $table->decimal('price', 8,2);
+            $table->decimal('price', 8, 2);
             $table->softDeletes();
             $table->timestamps();
         });

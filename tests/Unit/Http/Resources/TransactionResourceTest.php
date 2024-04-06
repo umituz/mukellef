@@ -18,7 +18,7 @@ class TransactionResourceTest extends BaseTestCase
         $transaction = Transaction::factory()->create([
             'user_id' => $user->id,
             'subscription_id' => $subscription->id,
-            'price' => 100
+            'price' => 100,
         ]);
 
         $resource = new TransactionResource($transaction);
@@ -27,7 +27,7 @@ class TransactionResourceTest extends BaseTestCase
             'id' => $transaction->id,
             'user_full_name' => 'John Doe',
             'subscription' => 'Example Subscription',
-            'price' => 100
+            'price' => 100,
         ];
 
         $request = Request::create('/dummy-url', 'GET');

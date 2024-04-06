@@ -32,8 +32,6 @@ class BaseRepository implements BaseRepositoryInterface
     /**
      * Find related record by value
      *
-     * @param $key
-     * @param $value
      * @return mixed
      */
     public function findBy($key, $value)
@@ -52,10 +50,10 @@ class BaseRepository implements BaseRepositoryInterface
     }
 
     /**
-     * @param $data
      * @return string
      *
      * Insert a new record
+     *
      * @throws Exception
      */
     public function create($data)
@@ -76,9 +74,8 @@ class BaseRepository implements BaseRepositoryInterface
     }
 
     /**
-     * @param $id
-     * @param $data
      * @return string
+     *
      * @throws Exception
      */
     public function update($id, $data)
@@ -100,9 +97,8 @@ class BaseRepository implements BaseRepositoryInterface
     }
 
     /**
-     * @param $key
-     * @param $value
      * @return string|true
+     *
      * @throws Exception
      */
     public function delete($key, $value)
@@ -123,8 +119,6 @@ class BaseRepository implements BaseRepositoryInterface
     }
 
     /**
-     * @param $key
-     * @param $data
      * @return mixed
      */
     public function firstOrCreate($key, $data)
@@ -133,8 +127,6 @@ class BaseRepository implements BaseRepositoryInterface
     }
 
     /**
-     * @param $key
-     * @param $value
      * @return mixed
      */
     public function exists($key, $value)
@@ -143,14 +135,13 @@ class BaseRepository implements BaseRepositoryInterface
     }
 
     /**
-     * @param $id
      * @return mixed
      */
     public function find($id)
     {
         $record = $this->model->find($id);
 
-        if (!$record) {
+        if (! $record) {
             throw new ModelNotFoundException();
         }
 
@@ -158,7 +149,6 @@ class BaseRepository implements BaseRepositoryInterface
     }
 
     /**
-     * @param $count
      * @return mixed
      */
     public function paginate($count = 5)

@@ -20,7 +20,7 @@ class SubscriptionFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'name' => $this->faker->words(3,3),
+            'name' => $this->faker->words(3, 3),
             'renewal_at' => $this->faker->dateTimeBetween('-10 days', 'now'),
         ];
     }

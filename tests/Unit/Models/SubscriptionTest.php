@@ -31,7 +31,7 @@ class SubscriptionTest extends BaseTestCase
         $transaction = Transaction::factory()->create([
             'user_id' => $user->id,
             'subscription_id' => $subscription->id,
-            'price' => 100
+            'price' => 100,
         ]);
 
         $this->assertInstanceOf(Transaction::class, $subscription->transaction);

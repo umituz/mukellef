@@ -11,7 +11,7 @@ class UserObserver extends BaseObserver
      */
     public function created(User $user): void
     {
-        $this->logger->log('New user created: ' . $user->name);
+        $this->logger->log('New user created: '.$user->name);
     }
 
     /**
@@ -19,7 +19,7 @@ class UserObserver extends BaseObserver
      */
     public function updated(User $user): void
     {
-        $this->logger->log('Current user updated: ' . $user->name);
+        $this->logger->log('Current user updated: '.$user->name);
     }
 
     /**
@@ -27,7 +27,7 @@ class UserObserver extends BaseObserver
      */
     public function deleted(User $user): void
     {
-        $this->logger->log('The user soft deleted: ' . $user->name);
+        $this->logger->log('The user soft deleted: '.$user->name);
     }
 
     /**
@@ -35,7 +35,7 @@ class UserObserver extends BaseObserver
      */
     public function restored(User $user): void
     {
-        $this->logger->log('The user restored: ' . $user->name);
+        $this->logger->log('The user restored: '.$user->name);
     }
 
     /**
@@ -43,6 +43,6 @@ class UserObserver extends BaseObserver
      */
     public function forceDeleted(User $user): void
     {
-        $this->logger->log('The user force deleted: ' . $user->name);
+        $this->logger->log('The user force deleted: '.$user->name);
     }
 }

@@ -33,7 +33,8 @@ class SetupCommand extends BaseCommand
             $this->info("\nSetup process completed successfully!");
         } catch (\Exception $e) {
             $progressBar->finish();
-            $this->error("\nSetup process failed: " . $e->getMessage());
+            $this->error("\nSetup process failed: ".$e->getMessage());
+
             return;
         }
 

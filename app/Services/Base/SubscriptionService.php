@@ -15,20 +15,16 @@ class SubscriptionService
         $this->subscriptionRepository = $subscriptionRepository;
     }
 
-    /**
-     * @param $userId
-     * @return AnonymousResourceCollection
-     */
     public function getSubscriptionList($userId): AnonymousResourceCollection
     {
-        $items =  $this->subscriptionRepository->getUserSubscriptionList($userId);
+        $items = $this->subscriptionRepository->getUserSubscriptionList($userId);
 
         return SubscriptionResource::collection($items);
     }
 
     public function createSubscription($data)
     {
-        $items =  $this->subscriptionRepository->createUserSubscription($data);
+        $items = $this->subscriptionRepository->createUserSubscription($data);
 
         return new SubscriptionResource($items);
     }
