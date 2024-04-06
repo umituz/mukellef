@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Scopes\SortingScope;
 use App\Observers\SubscriptionObserver;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Subscription extends BaseModel
 {
@@ -30,10 +31,10 @@ class Subscription extends BaseModel
     }
 
     /**
-     * @return BelongsTo
+     * @return HasOne
      */
-    public function transaction(): BelongsTo
+    public function transaction(): HasOne
     {
-        return $this->belongsTo(Transaction::class);
+        return $this->hasOne(Transaction::class);
     }
 }
