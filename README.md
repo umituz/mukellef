@@ -2,6 +2,9 @@
 
 Bu test case, Mukellef firması için hazırlanmıştır. Detaylı kurulum için aşağıdaki adımları takip edebilirsiniz.
 
+## Detaylar
+Laravel 11 ile kodlanmıştır ve PHP sürümü 8.3
+
 ## Gereksinimler
 
 - Git
@@ -55,7 +58,7 @@ Bu test case, Mukellef firması için hazırlanmıştır. Detaylı kurulum için
 
 7. Tarayıcınızda `http://localhost:8000` adresine gidin, Laravel hoş geldiniz sayfasını görmelisiniz.
 8. RabbitMQ admin paneline giriş bilgileri: kullanıcı adı - admin, şifre - password
-9. Phpmyadmin veritabanı arayüzüne giriş bilgileri: host - mysql, kullanıcı adı - sail, şifre - password
+9. Phpmyadmin veritabanı arayüzüne giriş bilgileri: host - mysql, kullanıcı adı - root, şifre - password
 
 ## Geliştirici
 
