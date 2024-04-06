@@ -157,5 +157,4 @@ class BaseRepositoryTest extends BaseTestCase
         $this->assertEquals(5, $paginatedUsers->perPage());
         $this->assertEquals(10, $paginatedUsers->total());
     }
-
 }

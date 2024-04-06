@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Scopes\SortingScope;
 use App\Observers\SubscriptionObserver;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -22,17 +21,11 @@ class Subscription extends BaseModel
         static::observe(SubscriptionObserver::class);
     }
 
-    /**
-     * @return BelongsTo
-     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * @return HasOne
-     */
     public function transaction(): HasOne
     {
         return $this->hasOne(Transaction::class);

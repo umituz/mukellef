@@ -28,9 +28,6 @@ class SubscriptionRequest extends FormRequest
         ];
     }
 
-    /**
-     * @return array
-     */
     public function messages(): array
     {
         return [
@@ -41,9 +38,6 @@ class SubscriptionRequest extends FormRequest
         ];
     }
 
-    /**
-     * @return array
-     */
     public function attributes(): array
     {
         return [

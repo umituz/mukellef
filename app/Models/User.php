@@ -14,10 +14,10 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    use HasApiTokens;
     use HasFactory;
     use Notifiable;
     use SoftDeletes;
-    use HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -28,7 +28,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'payment_provider'
+        'payment_provider',
     ];
 
     /**
@@ -62,17 +62,11 @@ class User extends Authenticatable
         static::observe(UserObserver::class);
     }
 
-    /**
-     * @return HasMany
-     */
     public function subscriptions(): HasMany
     {
         return $this->hasMany(Subscription::class);
     }
 
-    /**
-     * @return HasMany
-     */
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);

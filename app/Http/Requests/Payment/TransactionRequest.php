@@ -29,8 +29,6 @@ class TransactionRequest extends FormRequest
 
     /**
      * Get the error messages for the defined validation rules.
-     *
-     * @return array
      */
     public function messages(): array
     {
@@ -45,8 +43,6 @@ class TransactionRequest extends FormRequest
 
     /**
      * Get custom attributes for validator errors.
-     *
-     * @return array
      */
     public function attributes(): array
     {

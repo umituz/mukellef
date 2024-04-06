@@ -42,7 +42,7 @@ class PaymentReceivedMail extends Mailable implements ShouldQueue
         return new Content(
             view: 'emails.payment-received',
             with: [
-                'user' => $this->data
+                'user' => $this->data,
             ]
         );
     }

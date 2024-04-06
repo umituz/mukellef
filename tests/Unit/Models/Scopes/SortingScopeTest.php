@@ -7,7 +7,6 @@ use Tests\BaseTestCase;
 
 class SortingScopeTest extends BaseTestCase
 {
-
     public function test_should_order_results_by_descending_id()
     {
         $first = User::factory()->create();

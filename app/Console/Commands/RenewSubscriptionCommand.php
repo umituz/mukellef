@@ -21,7 +21,9 @@ class RenewSubscriptionCommand extends BaseCommand
      * @var string
      */
     protected $description = 'Renew subscriptions that are due for renewal';
+
     private SubscriptionRepositoryInterface $subscriptionRepository;
+
     private TransactionService $transactionService;
 
     public function __construct(SubscriptionRepositoryInterface $subscriptionRepository, TransactionService $transactionService)

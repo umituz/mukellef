@@ -13,8 +13,8 @@ class LoginControllerTest extends BaseTestCase
 {
     public function test_should_login_successfully()
     {
-        $user = User::factory()->create(['password' => bcrypt(123456789),]);
-        $userData = ['email' => $user->email, 'password' => '123456789',];
+        $user = User::factory()->create(['password' => bcrypt(123456789)]);
+        $userData = ['email' => $user->email, 'password' => '123456789'];
 
         $response = $this->json('POST', route('login'), $userData);
 

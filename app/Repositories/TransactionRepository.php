@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Transaction;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Class TransactionRepository
@@ -20,7 +19,6 @@ class TransactionRepository extends BaseRepository implements TransactionReposit
     }
 
     /**
-     * @param $userId
      * @return mixed
      */
     public function getUserTransactionList($userId)
@@ -29,7 +27,6 @@ class TransactionRepository extends BaseRepository implements TransactionReposit
     }
 
     /**
-     * @param $data
      * @return mixed
      */
     public function createUserTransaction($data)

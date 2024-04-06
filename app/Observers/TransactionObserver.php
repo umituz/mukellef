@@ -11,7 +11,7 @@ class TransactionObserver extends BaseObserver
      */
     public function created(Transaction $transaction): void
     {
-        $this->logger->log('New transaction created: ' . $transaction->id);
+        $this->logger->log('New transaction created: '.$transaction->id);
     }
 
     /**
@@ -19,7 +19,7 @@ class TransactionObserver extends BaseObserver
      */
     public function updated(Transaction $transaction): void
     {
-        $this->logger->log('Current user updated: ' . $transaction->id);
+        $this->logger->log('Current user updated: '.$transaction->id);
     }
 
     /**
@@ -27,7 +27,7 @@ class TransactionObserver extends BaseObserver
      */
     public function deleted(Transaction $transaction): void
     {
-        $this->logger->log('The transaction soft deleted: ' . $transaction->id);
+        $this->logger->log('The transaction soft deleted: '.$transaction->id);
     }
 
     /**
@@ -35,7 +35,7 @@ class TransactionObserver extends BaseObserver
      */
     public function restored(Transaction $transaction): void
     {
-        $this->logger->log('The transaction restored: ' . $transaction->id);
+        $this->logger->log('The transaction restored: '.$transaction->id);
     }
 
     /**
@@ -43,6 +43,6 @@ class TransactionObserver extends BaseObserver
      */
     public function forceDeleted(Transaction $transaction): void
     {
-        $this->logger->log('The transaction force deleted: ' . $transaction->id);
+        $this->logger->log('The transaction force deleted: '.$transaction->id);
     }
 }

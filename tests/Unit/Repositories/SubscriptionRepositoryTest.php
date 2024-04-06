@@ -51,5 +51,4 @@ class SubscriptionRepositoryTest extends BaseTestCase
 
         $this->assertCount(1, $renewableItems);
     }
-
 }

@@ -19,9 +19,6 @@ class TransactionsController extends BaseController
 
     /**
      * Display a listing of the transactions.
-     *
-     * @param User $user
-     * @return JsonResponse
      */
     public function index(User $user): JsonResponse
     {
@@ -32,10 +29,6 @@ class TransactionsController extends BaseController
 
     /**
      * Store a newly created transaction in storage.
-     *
-     * @param User $user
-     * @param TransactionRequest $request
-     * @return JsonResponse
      */
     public function store(User $user, TransactionRequest $request): JsonResponse
     {

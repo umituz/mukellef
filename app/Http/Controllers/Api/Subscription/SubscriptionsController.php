@@ -22,7 +22,7 @@ class SubscriptionsController extends BaseController
      */
     public function index(User $user)
     {
-       $items = $this->subscriptionService->getSubscriptionList($user->id);
+        $items = $this->subscriptionService->getSubscriptionList($user->id);
 
         return $this->ok($items, __('Subscription List'));
     }

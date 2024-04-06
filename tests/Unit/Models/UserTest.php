@@ -9,7 +9,6 @@ use Tests\BaseTestCase;
 
 class UserTest extends BaseTestCase
 {
-
     public function test_subscriptions_relation()
     {
         $user = User::factory()->create();

@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Subscription;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Class SubscriptionRepository
@@ -20,7 +19,6 @@ class SubscriptionRepository extends BaseRepository implements SubscriptionRepos
     }
 
     /**
-     * @param $userId
      * @return mixed
      */
     public function getUserSubscriptionList($userId)

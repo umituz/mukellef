@@ -20,17 +20,11 @@ class Transaction extends BaseModel
         static::observe(TransactionObserver::class);
     }
 
-    /**
-     * @return BelongsTo
-     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * @return BelongsTo
-     */
     public function subscription(): BelongsTo
     {
         return $this->belongsTo(Subscription::class);

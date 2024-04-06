@@ -17,6 +17,7 @@ class RenewSubscriptionJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected Subscription $subscription;
+
     private TransactionService $transactionService;
 
     /**

@@ -36,7 +36,7 @@ class SubscriptionsControllerTest extends BaseTestCase
         $this->actingAs($user);
         $subscriptionData = Subscription::factory()->make([
             'renewal_at' => '2024/05/06',
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ])->toArray();
 
         $response = $this->postJson(route('users.subscriptions.store', $user->id), $subscriptionData);
@@ -72,12 +72,12 @@ class SubscriptionsControllerTest extends BaseTestCase
         $subscription = Subscription::factory()->create(['user_id' => $user->id]);
         $newData = Subscription::factory()->make([
             'renewal_at' => '2024/05/01',
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ])->toArray();
 
         $response = $this->putJson(route('users.subscriptions.update', [
             'user' => $user->id,
-            'subscription' => $subscription->id
+            'subscription' => $subscription->id,
         ]), $newData);
 
         $response->assertStatus(Response::HTTP_OK);
@@ -100,7 +100,7 @@ class SubscriptionsControllerTest extends BaseTestCase
         $invalidData = [];
         $response = $this->putJson(route('users.subscriptions.update', [
             'user' => $user->id,
-            'subscription' => $subscription->id
+            'subscription' => $subscription->id,
         ]), $invalidData);
 
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
@@ -115,7 +115,7 @@ class SubscriptionsControllerTest extends BaseTestCase
         $nonExistingSubscriptionId = 9999;
         $response = $this->putJson(route('users.subscriptions.update', [
             'user' => $user->id,
-            'subscription' => $nonExistingSubscriptionId
+            'subscription' => $nonExistingSubscriptionId,
         ]));
 
         $response->assertStatus(Response::HTTP_NOT_FOUND);
@@ -129,7 +129,7 @@ class SubscriptionsControllerTest extends BaseTestCase
 
         $response = $this->deleteJson(route('users.subscriptions.destroy', [
             'user' => $user->id,
-            'subscription' => $subscription
+            'subscription' => $subscription,
         ]));
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
@@ -144,7 +144,7 @@ class SubscriptionsControllerTest extends BaseTestCase
         $nonExistingSubscriptionId = 9999;
         $response = $this->deleteJson(route('users.subscriptions.destroy', [
             'user' => $user->id,
-            'subscription' => $nonExistingSubscriptionId
+            'subscription' => $nonExistingSubscriptionId,
         ]));
 
         $response->assertStatus(Response::HTTP_NOT_FOUND);
