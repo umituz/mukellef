@@ -477,7 +477,7 @@
 	"variable": [
 		{
 			"key": "apiUrl",
-			"value": "http://localhost/api",
+			"value": "http://localhost:8000/api",
 			"type": "string"
 		}
 	]

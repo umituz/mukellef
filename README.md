@@ -53,7 +53,7 @@ Bu test case, Mukellef firması için hazırlanmıştır. Detaylı kurulum için
    - Hazırlanan tüm entegrasyon ve birim testlerini coverage alınarak tarayıcıda gösterilmesi için gerekli html dosyalarını oluşturur
     ```
 
-7. Tarayıcınızda `http://localhost` adresine gidin, Laravel hoş geldiniz sayfasını görmelisiniz.
+7. Tarayıcınızda `http://localhost:8000` adresine gidin, Laravel hoş geldiniz sayfasını görmelisiniz.
 8. RabbitMQ admin paneline giriş bilgileri: kullanıcı adı - admin, şifre - password
 9. Phpmyadmin veritabanı arayüzüne giriş bilgileri: host - mysql, kullanıcı adı - sail, şifre - password
 
