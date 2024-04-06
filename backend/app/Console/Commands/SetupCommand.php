@@ -3,11 +3,12 @@
 namespace App\Console\Commands;
 
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Console\Command;
 
 /**
  * Class SetupCommand
  */
-class SetupCommand extends BaseCommand
+class SetupCommand extends Command
 {
     protected $signature = 'setup';
 

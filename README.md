@@ -21,12 +21,6 @@ Bu test case, Mukellef firması için hazırlanmıştır. Detaylı kurulum için
     cd mukellef
     ```
 
-3. `.env.example` dosyasını kopyalayarak `.env` dosyasını oluşturun:
-
-    ```bash
-    cp .env.example .env
-    ```
-
 4. Docker container'larını başlatmak için aşağıdaki komutu çalıştırın:
 
     ```bash
@@ -36,14 +30,12 @@ Bu test case, Mukellef firması için hazırlanmıştır. Detaylı kurulum için
 5. Laravel projesini oluşturmak ve gerekli dosyaları yüklemek için Docker container'ına giriş yapın:
 
     ```bash
-    docker-compose exec -it mukellef_laravel bash
+    docker-compose exec -it backend bash
     ```
 
    Ardından aşağıdaki komutları çalıştırabilirsiniz.
 6.
     ```bash
-    
-   php artisan key:generate
     
    php artisan setup
    - Veritabanını tablolarını oluşturup veri eklemek için, setup
@@ -53,9 +45,17 @@ Bu test case, Mukellef firması için hazırlanmıştır. Detaylı kurulum için
    
    php artisan queue:work
    - Kuyrukta bekleyen işlemleri çalıştırır
+   
+   php artisan test
+   - Hazırlanan tüm entegrasyon ve birim testlerini çalıştırır
+   
+   php artisan test --coverage-html=coverage
+   - Hazırlanan tüm entegrasyon ve birim testlerini coverage alınarak tarayıcıda gösterilmesi için gerekli html dosyalarını oluşturur
     ```
 
-6. Tarayıcınızda `http://localhost` adresine gidin, Laravel hoş geldiniz sayfasını görmelisiniz.
+7. Tarayıcınızda `http://localhost` adresine gidin, Laravel hoş geldiniz sayfasını görmelisiniz.
+8. RabbitMQ admin paneline giriş bilgileri: kullanıcı adı - admin, şifre - password
+9. Phpmyadmin veritabanı arayüzüne giriş bilgileri: host - mysql, kullanıcı adı - sail, şifre - password
 
 ## Geliştirici
 

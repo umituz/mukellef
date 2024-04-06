@@ -5,8 +5,9 @@ namespace App\Console\Commands;
 use App\Jobs\RenewSubscriptionJob;
 use App\Repositories\SubscriptionRepositoryInterface;
 use App\Services\Base\TransactionService;
+use Illuminate\Console\Command;
 
-class RenewSubscriptionCommand extends BaseCommand
+class RenewSubscriptionCommand extends Command
 {
     /**
      * The name and signature of the console command.
