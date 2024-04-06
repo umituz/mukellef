@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -55,6 +56,7 @@ class BaseRepository implements BaseRepositoryInterface
      * @return string
      *
      * Insert a new record
+     * @throws Exception
      */
     public function create($data)
     {
@@ -69,15 +71,15 @@ class BaseRepository implements BaseRepositoryInterface
         } catch (Exception $e) {
             DB::rollBack();
 
-            return $e->getMessage();
+            throw $e;
         }
-
     }
 
     /**
      * @param $id
      * @param $data
      * @return string
+     * @throws Exception
      */
     public function update($id, $data)
     {
@@ -93,7 +95,7 @@ class BaseRepository implements BaseRepositoryInterface
         } catch (Exception $e) {
             DB::rollBack();
 
-            return $e->getMessage();
+            throw $e;
         }
     }
 
@@ -101,6 +103,7 @@ class BaseRepository implements BaseRepositoryInterface
      * @param $key
      * @param $value
      * @return string|true
+     * @throws Exception
      */
     public function delete($key, $value)
     {
@@ -115,7 +118,7 @@ class BaseRepository implements BaseRepositoryInterface
         } catch (Exception $e) {
             DB::rollBack();
 
-            return $e->getMessage();
+            throw $e;
         }
     }
 
@@ -145,7 +148,13 @@ class BaseRepository implements BaseRepositoryInterface
      */
     public function find($id)
     {
-        return $this->model->find($id);
+        $record = $this->model->find($id);
+
+        if (!$record) {
+            throw new ModelNotFoundException();
+        }
+
+        return $record;
     }
 
     /**
