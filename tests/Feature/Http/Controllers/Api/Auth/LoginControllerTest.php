@@ -16,7 +16,7 @@ class LoginControllerTest extends BaseTestCase
         $user = User::factory()->create(['password' => bcrypt(123456789),]);
         $userData = ['email' => $user->email, 'password' => '123456789',];
 
-        $response = $this->json('POST', '/api/auth/login', $userData);
+        $response = $this->json('POST', route('login'), $userData);
 
         $response->assertStatus(200)
             ->assertJsonStructure([
@@ -33,7 +33,7 @@ class LoginControllerTest extends BaseTestCase
             'password' => 'wrong_password',
         ];
 
-        $response = $this->json('POST', '/api/auth/login', $userData);
+        $response = $this->json('POST', route('login'), $userData);
 
         $response->assertStatus(422)
             ->assertJson([
@@ -50,7 +50,7 @@ class LoginControllerTest extends BaseTestCase
             'password' => 'password123',
         ];
 
-        $response = $this->json('POST', '/api/auth/login', $userData);
+        $response = $this->json('POST', route('login'), $userData);
 
         $response->assertStatus(422)
             ->assertJson([
@@ -67,7 +67,7 @@ class LoginControllerTest extends BaseTestCase
             'password' => 'password123',
         ];
 
-        $response = $this->json('POST', '/api/auth/login', $userData);
+        $response = $this->json('POST', route('login'), $userData);
 
         $response->assertStatus(422)
             ->assertJson([
@@ -82,7 +82,7 @@ class LoginControllerTest extends BaseTestCase
         $user = User::factory()->create();
         Sanctum::actingAs($user);
 
-        $response = $this->postJson('/api/logout');
+        $response = $this->postJson(route('logout'));
 
         $response
             ->assertStatus(200)

@@ -8,9 +8,10 @@ namespace App\Repositories;
 interface SubscriptionRepositoryInterface
 {
     /**
+     * @param $userId
      * @return mixed
      */
-    public function getUserSubscriptionList();
+    public function getUserSubscriptionList($userId);
 
     /**
      * @return mixed

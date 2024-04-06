@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers\Api\Payment;
+namespace Tests\Feature\Http\Controllers\Api\Transaction;
 
 use App\Http\Resources\TransactionResource;
 use App\Models\Subscription;
@@ -28,7 +28,7 @@ class TransactionsControllerTest extends BaseTestCase
 
         $transactionServiceMock = $this->mock(TransactionService::class);
         $transactionServiceMock->shouldReceive('getTransactionList')->andReturn(collect($transactions));
-        $response = $this->actingAs($user)->get(route('users.transactions.index'));
+        $response = $this->actingAs($user)->get(route('users.transactions.index', $user->id));
 
         $response->assertStatus(Response::HTTP_OK);
         $response->assertJsonStructure([
@@ -63,6 +63,7 @@ class TransactionsControllerTest extends BaseTestCase
         );
 
         $data = [
+            'user_id' => $user->id,
             'subscription_id' => 1,
             'price' => 100,
         ];
@@ -95,6 +96,7 @@ class TransactionsControllerTest extends BaseTestCase
         );
 
         $data = [
+            'user_id' => $user->id,
             'subscription_id' => 1,
             'price' => 100,
         ];

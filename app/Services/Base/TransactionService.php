@@ -25,16 +25,16 @@ class TransactionService
         $this->paymentService = $paymentService;
     }
 
-    public function getTransactionList()
+    public function getTransactionList($userId)
     {
-        $transactions = $this->transactionRepository->getUserTransactionList();
+        $transactions = $this->transactionRepository->getUserTransactionList($userId);
 
         return TransactionResource::collection($transactions);
     }
 
-    public function createTransaction($validatedData)
+    public function createTransaction($data)
     {
-        $item = $this->payByProvider(Auth::user(), $validatedData);
+        $item = $this->payByProvider($data);
 
         if ($item === false) {
             return null;
@@ -43,12 +43,13 @@ class TransactionService
         return new TransactionResource($item);
     }
 
-    private function payByProvider($user, $data)
+    private function payByProvider($data)
     {
-        $paymentSuccess = $this->paymentService->pay($user, $data['price']);
+        $paymentSuccess = $this->paymentService->pay($data['user_id'], $data['price']);
 
         if ($paymentSuccess) {
             $item = $this->transactionRepository->createUserTransaction([
+                'user_id' => $data['user_id'],
                 'subscription_id' => $data['subscription_id'],
                 'price' => $data['price'],
             ]);

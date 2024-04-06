@@ -20,11 +20,12 @@ class TransactionRepository extends BaseRepository implements TransactionReposit
     }
 
     /**
+     * @param $userId
      * @return mixed
      */
-    public function getUserTransactionList()
+    public function getUserTransactionList($userId)
     {
-        return Auth::user()->transactions()->get();
+        return $this->transaction->where('user_id', $userId)->get();
     }
 
     /**
@@ -33,6 +34,6 @@ class TransactionRepository extends BaseRepository implements TransactionReposit
      */
     public function createUserTransaction($data)
     {
-        return Auth::user()->transactions()->create($data);
+        return $this->transaction->create($data);
     }
 }

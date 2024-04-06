@@ -8,9 +8,10 @@ namespace App\Repositories;
 interface TransactionRepositoryInterface
 {
     /**
+     * @param $userId
      * @return mixed
      */
-    public function getUserTransactionList();
+    public function getUserTransactionList($userId);
 
     /**
      * @param $data

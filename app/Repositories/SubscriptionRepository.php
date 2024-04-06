@@ -20,11 +20,12 @@ class SubscriptionRepository extends BaseRepository implements SubscriptionRepos
     }
 
     /**
+     * @param $userId
      * @return mixed
      */
-    public function getUserSubscriptionList()
+    public function getUserSubscriptionList($userId)
     {
-        return Auth::user()->subscriptions()->get();
+        return $this->subscription->where('user_id', $userId)->get();
     }
 
     /**
@@ -32,7 +33,7 @@ class SubscriptionRepository extends BaseRepository implements SubscriptionRepos
      */
     public function createUserSubscription($data)
     {
-        return Auth::user()->subscriptions()->create($data);
+        return $this->subscription->create($data);
     }
 
     /**

@@ -18,7 +18,7 @@ class TransactionRepositoryTest extends BaseTestCase
         $transactions = Transaction::factory(3)->create(['user_id' => $user->id]);
 
         $repository = new TransactionRepository(new Transaction);
-        $userTransactions = $repository->getUserTransactionList();
+        $userTransactions = $repository->getUserTransactionList($user->id);
 
         $this->assertCount(3, $userTransactions);
 

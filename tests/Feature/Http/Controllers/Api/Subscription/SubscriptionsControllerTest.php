@@ -15,7 +15,7 @@ class SubscriptionsControllerTest extends BaseTestCase
         $this->actingAs($user);
         Subscription::factory()->count(3)->create(['user_id' => $user->id]);
 
-        $response = $this->getJson(route('users.subscriptions.index'));
+        $response = $this->getJson(route('users.subscriptions.index', $user->id));
 
         $response->assertStatus(Response::HTTP_OK);
         $response->assertJsonCount(3, 'data');
@@ -39,7 +39,7 @@ class SubscriptionsControllerTest extends BaseTestCase
             'user_id' => $user->id
         ])->toArray();
 
-        $response = $this->postJson(route('users.subscriptions.store'), $subscriptionData);
+        $response = $this->postJson(route('users.subscriptions.store', $user->id), $subscriptionData);
 
         $response->assertStatus(Response::HTTP_CREATED);
         $this->assertDatabaseHas('subscriptions', $subscriptionData);
@@ -58,7 +58,7 @@ class SubscriptionsControllerTest extends BaseTestCase
         $this->actingAs($user);
 
         $invalidData = [];
-        $response = $this->postJson(route('users.subscriptions.store'), $invalidData);
+        $response = $this->postJson(route('users.subscriptions.store', $user->id), $invalidData);
 
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         $response->assertJsonValidationErrors(['name', 'renewal_at']);
@@ -75,7 +75,10 @@ class SubscriptionsControllerTest extends BaseTestCase
             'user_id' => $user->id
         ])->toArray();
 
-        $response = $this->putJson(route('users.subscriptions.update', $subscription->id), $newData);
+        $response = $this->putJson(route('users.subscriptions.update', [
+            'user' => $user->id,
+            'subscription' => $subscription->id
+        ]), $newData);
 
         $response->assertStatus(Response::HTTP_OK);
         $response->assertJsonStructure([
@@ -95,7 +98,10 @@ class SubscriptionsControllerTest extends BaseTestCase
 
         $subscription = Subscription::factory()->create(['user_id' => $user->id]);
         $invalidData = [];
-        $response = $this->putJson(route('users.subscriptions.update', $subscription->id), $invalidData);
+        $response = $this->putJson(route('users.subscriptions.update', [
+            'user' => $user->id,
+            'subscription' => $subscription->id
+        ]), $invalidData);
 
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         $response->assertJsonValidationErrors(['name', 'renewal_at']);
@@ -107,7 +113,10 @@ class SubscriptionsControllerTest extends BaseTestCase
         $this->actingAs($user);
 
         $nonExistingSubscriptionId = 9999;
-        $response = $this->putJson(route('users.subscriptions.update', $nonExistingSubscriptionId), []);
+        $response = $this->putJson(route('users.subscriptions.update', [
+            'user' => $user->id,
+            'subscription' => $nonExistingSubscriptionId
+        ]));
 
         $response->assertStatus(Response::HTTP_NOT_FOUND);
     }
@@ -116,10 +125,12 @@ class SubscriptionsControllerTest extends BaseTestCase
     {
         $user = User::factory()->create();
         $this->actingAs($user);
-
         $subscription = Subscription::factory()->create(['user_id' => $user->id]);
 
-        $response = $this->deleteJson(route('users.subscriptions.destroy', $subscription->id));
+        $response = $this->deleteJson(route('users.subscriptions.destroy', [
+            'user' => $user->id,
+            'subscription' => $subscription
+        ]));
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
         $this->assertSoftDeleted('subscriptions', ['id' => $subscription->id]);
@@ -131,7 +142,10 @@ class SubscriptionsControllerTest extends BaseTestCase
         $this->actingAs($user);
 
         $nonExistingSubscriptionId = 9999;
-        $response = $this->deleteJson(route('users.subscriptions.destroy', $nonExistingSubscriptionId));
+        $response = $this->deleteJson(route('users.subscriptions.destroy', [
+            'user' => $user->id,
+            'subscription' => $nonExistingSubscriptionId
+        ]));
 
         $response->assertStatus(Response::HTTP_NOT_FOUND);
     }

@@ -15,7 +15,6 @@ class UserResourceTest extends BaseTestCase
             'name' => 'John Doe',
             'password' => bcrypt(123456789),
             'email' => 'john@example.com',
-            'payment_provider' => 'stripe',
         ]);
 
         $resource = new UserResource($user);
@@ -24,7 +23,6 @@ class UserResourceTest extends BaseTestCase
             'id' => $user->id,
             'name' => 'John Doe',
             'email' => 'john@example.com',
-            'payment_provider' => 'stripe',
         ];
 
         $request = Request::create('/dummy-url', 'GET');

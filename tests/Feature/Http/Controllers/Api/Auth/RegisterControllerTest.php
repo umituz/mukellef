@@ -23,7 +23,7 @@ class RegisterControllerTest extends BaseTestCase
             'password_confirmation' => $password,
         ];
 
-        $response = $this->json('POST', '/api/auth/register', $userData);
+        $response = $this->json('POST', route('register'), $userData);
 
         $response->assertJsonStructure([
             'statusCode',
@@ -42,7 +42,7 @@ class RegisterControllerTest extends BaseTestCase
             'password_confirmation' => $password,
         ];
 
-        $response = $this->json('POST', '/api/auth/register', $userData);
+        $response = $this->json('POST', route('register'), $userData);
 
         $response->assertStatus(422)
             ->assertJsonStructure([
@@ -65,7 +65,7 @@ class RegisterControllerTest extends BaseTestCase
             'password_confirmation' => $password,
         ];
 
-        $response = $this->json('POST', '/api/auth/register', $userData);
+        $response = $this->json('POST', route('register'), $userData);
 
         $response->assertStatus(422)
             ->assertJsonStructure([
@@ -86,7 +86,7 @@ class RegisterControllerTest extends BaseTestCase
             'password_confirmation' => 'different_password',
         ];
 
-        $response = $this->json('POST', '/api/auth/register', $userData);
+        $response = $this->json('POST', route('register'), $userData);
 
         $response->assertStatus(422)
             ->assertJsonStructure([

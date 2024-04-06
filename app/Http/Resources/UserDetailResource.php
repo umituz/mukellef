@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * Class UserResource
+ * Class UserDetailResource
  *
  * @parent App\Http\Resources
  */
-class UserResource extends JsonResource
+class UserDetailResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -23,6 +23,8 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'subscriptions' => SubscriptionResource::collection($this->subscriptions ?? []),
+            'transactions' => TransactionResource::collection($this->transactions ?? []),
         ];
     }
 }

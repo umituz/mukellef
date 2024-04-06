@@ -17,7 +17,7 @@ class SubscriptionRepositoryTest extends BaseTestCase
         $subscriptions = Subscription::factory(3)->create(['user_id' => $user->id]);
 
         $repository = new SubscriptionRepository(new Subscription);
-        $userSubscriptions = $repository->getUserSubscriptionList();
+        $userSubscriptions = $repository->getUserSubscriptionList($user->id);
 
         $this->assertCount(3, $userSubscriptions);
         foreach ($subscriptions as $subscription) {
@@ -29,7 +29,7 @@ class SubscriptionRepositoryTest extends BaseTestCase
     {
         $user = User::factory()->create();
         $this->actingAs($user);
-        $subscriptionData = ['name' => 'Test Subscription', 'renewal_at' => now()];
+        $subscriptionData = ['user_id' => $user->id, 'name' => 'Test Subscription', 'renewal_at' => now()];
 
         $repository = new SubscriptionRepository(new Subscription);
         $createdSubscription = $repository->createUserSubscription($subscriptionData);
