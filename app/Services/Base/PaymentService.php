@@ -9,16 +9,8 @@ use App\Models\User;
 
 class PaymentService
 {
-    private UserService $userService;
-
-    public function __construct(UserService $userService)
+    public function pay(User $user, float $amount): bool
     {
-        $this->userService = $userService;
-    }
-
-    public function pay(int $userId, float $amount): bool
-    {
-        $user = $this->userService->find($userId);
         $gateway = $this->getPaymentGateway($user);
 
         if ($gateway) {

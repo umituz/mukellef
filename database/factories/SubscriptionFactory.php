@@ -19,9 +19,9 @@ class SubscriptionFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => 1 ?? User::factory(),
+            'user_id' => User::factory(),
             'name' => $this->faker->words(3,3),
-            'renewal_at' => $this->faker->dateTimeBetween('now', '+1 month'),
+            'renewal_at' => $this->faker->dateTimeBetween('-10 days', 'now'),
         ];
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Jobs;
 
+use App\Enums\SubscriptionEnums;
 use App\Models\Subscription;
+use App\Services\Base\TransactionService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -15,13 +17,23 @@ class RenewSubscriptionJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected Subscription $subscription;
+    private TransactionService $transactionService;
 
     /**
      * Create a new job instance.
      */
-    public function __construct(Subscription $subscription)
+    public function __construct(Subscription $subscription, TransactionService $transactionService)
     {
         $this->subscription = $subscription;
+        $this->transactionService = $transactionService;
+
+        $paymentData = [
+            'user_id' => $this->subscription->user_id,
+            'subscription_id' => $this->subscription->id,
+            'price' => SubscriptionEnums::FIXED_PRICE,
+        ];
+
+        $this->transactionService->createTransaction($paymentData);
     }
 
     /**

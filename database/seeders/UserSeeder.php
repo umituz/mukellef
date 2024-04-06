@@ -13,7 +13,6 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create(['name' => 'Ümit UZ', 'email' => 'umituz9999@gmail.com', 'password' => bcrypt(123456789)]);
-
+        User::create(['name' => 'Test User', 'email' => 'test@mukellef.co', 'password' => bcrypt(123456789)]);
     }
 }

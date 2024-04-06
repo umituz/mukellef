@@ -13,16 +13,19 @@ class TransactionService
     private TransactionRepositoryInterface $transactionRepository;
     private MailService $mailService;
     private PaymentService $paymentService;
+    private UserService $userService;
 
     public function __construct(
         TransactionRepositoryInterface $transactionRepository,
         MailService $mailService,
-        PaymentService $paymentService
+        PaymentService $paymentService,
+        UserService $userService,
     )
     {
         $this->transactionRepository = $transactionRepository;
         $this->mailService = $mailService;
         $this->paymentService = $paymentService;
+        $this->userService = $userService;
     }
 
     public function getTransactionList($userId)
@@ -45,7 +48,8 @@ class TransactionService
 
     private function payByProvider($data)
     {
-        $paymentSuccess = $this->paymentService->pay($data['user_id'], $data['price']);
+        $user = $this->userService->find($data['user_id']);
+        $paymentSuccess = $this->paymentService->pay($user, $data['price']);
 
         if ($paymentSuccess) {
             $item = $this->transactionRepository->createUserTransaction([
@@ -54,7 +58,7 @@ class TransactionService
                 'price' => $data['price'],
             ]);
 
-            $this->sendPaymentReceivedMail();
+            $this->sendPaymentReceivedMail($user);
 
             return $item;
         } else {
@@ -62,11 +66,11 @@ class TransactionService
         }
     }
 
-    private function sendPaymentReceivedMail()
+    private function sendPaymentReceivedMail($user)
     {
         $this->mailService->sendMailByEvent(
             PaymentReceivedEvent::class,
-            Auth::user()
+            $user
         );
     }
 }

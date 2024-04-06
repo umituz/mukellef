@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Repositories\TransactionRepositoryInterface;
 use App\Services\Base\PaymentService;
 use App\Services\Base\TransactionService;
+use App\Services\Base\UserService;
 use App\Services\Mail\MailService;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -56,10 +57,14 @@ class TransactionsControllerTest extends BaseTestCase
         $mailServiceMock = $this->mock(MailService::class);
         $mailServiceMock->shouldReceive('sendMailByEvent');
 
+        $userServiceMock = $this->mock(UserService::class);
+        $userServiceMock->shouldReceive('find')->andReturn($user);
+
         $transactionService = new TransactionService(
             $transactionRepositoryMock,
             $mailServiceMock,
-            $paymentServiceMock
+            $paymentServiceMock,
+            $userServiceMock
         );
 
         $data = [
@@ -89,10 +94,14 @@ class TransactionsControllerTest extends BaseTestCase
         $mailServiceMock = $this->mock(MailService::class);
         $mailServiceMock->shouldReceive('sendMailByEvent')->never();
 
+        $userServiceMock = $this->mock(UserService::class);
+        $userServiceMock->shouldReceive('find')->andReturn($user);
+
         $transactionService = new TransactionService(
             $transactionRepositoryMock,
             $mailServiceMock,
-            $paymentServiceMock
+            $paymentServiceMock,
+            $userServiceMock
         );
 
         $data = [

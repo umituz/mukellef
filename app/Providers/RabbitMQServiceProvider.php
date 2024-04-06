@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Jobs\RenewSubscriptionJob;
 use App\Models\Subscription;
-use App\Services\Mail\MailService;
+use App\Services\Base\TransactionService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,7 +24,7 @@ class RabbitMQServiceProvider extends ServiceProvider
     public function boot(): void
     {
         App::bindMethod(RenewSubscriptionJob::class.'@handle', function ($job, $app) {
-            return $job->handle($app->make(Subscription::class));
+            return $job->handle($app->make(Subscription::class), $app->make(TransactionService::class));
         });
     }
 }
